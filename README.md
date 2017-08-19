@@ -1,2 +1,2 @@
 # poi.github.io
-soreppoi
+soreppoi poi.24-7.ro
