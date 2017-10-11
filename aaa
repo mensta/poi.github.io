@@ -17,10 +17,12 @@
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/index2.css" rel="stylesheet">
-    <link href='assets/css/test.css' rel='stylesheet' type='text/css'>
+    <link href='http://test.agario2017.gq/test.css' rel='stylesheet' type='text/css'>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
+    <script src="assets/js/vector.js"></script>
+ <script src="assets/js/main_out_v3.1.js"></script>
+ <script src="assets/js/log.js"></script>
  <!---      <script src="http://agar.io/environment.js"></script>
       <script src="http://agar.io/js/master.js"></script> --->
 <!--- <script src="./i18nXIN-S.js?v=786"></script> --->
@@ -177,13 +179,10 @@ function split() {
                     <select id="gamemode" class="form-control" onchange="setserver($(this).val());" required>
                        <!---  <option selected disabled>Gamemode:</option> --->
 
-                        <option value="ps.fstyle.ns01.us:9123">Main9123</option>
-                        <option value="mivabe-bakamonocx52752.codeanyapp.com:9456">TestServ2</option>
-                        <option value="ps.fstyle.ns01.us:9456">Minions 24/7</option>
+                        <option value="ps.fstyle.ga:9123">Main9123</option>
+                        <option value="caw.fstyle.ns01.us:9456">Minions</option>
+                        <option value="ps.fstyle.ga:9456">TestServ2</option>
                         <option value="150.95.135.169:8001">Feed=Virus</option>
-                        <option value="m16ogar.al.gl:2052">FFA M16(Korea)</option>
-                       <!---  <option value="45.55.155.2:444">Instant Mod</option> --->
-                        <option value="128.199.76.99:4000">Instant Mod</option>
                     </select>
                     <br clear="both" />
                 </div>
@@ -230,7 +229,6 @@ function split() {
 <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F99.k.vu%2F&amp;src=sdkpreparse">SHARE</a></div>
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://99.k.vu/" data-text="AGARIO PRO SERVER!!" data-hashtags="agario">Tweet</a> 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
                     </div>
                 </div>
             </form>
@@ -244,8 +242,6 @@ function split() {
                         Press <b>W</b> to eject some mass<br/>
                         Press <b>Shift</b> = macro split<br/>
                         Press <b>D</b> = Double Split<br/>
-                        Press <b>E</b> to split your bots<br/>
-                        Press <b>R</b> to eject your bots<br/>
                     </span><br>
 <!--- <script>
 
@@ -259,7 +255,7 @@ alert("Maintenance...");  //文字列の表示
 
             <hr />
             <div id="footer">
-                <a href="http://99.k.vu/" class="text-muted" target="_blank">Info: 99.k.vu</a> | <a href="https://www.youtube.com/channel/UCBd0KM0TyLPiminXiLzFrBQ/discussion#FstyleAgarSkinRequests-PasteYourSkinURL&skinName/" class="text-muted" target="_blank">Skin Requests</a> | <a href="https://www.youtube.com/channel/UCBd0KM0TyLPiminXiLzFrBQ/discussion" class="text-muted" target="_blank">Contact Us(YT)</a>
+                <a href="http://99.k.vu/" class="text-muted" target="_blank">Info: 99.k.vu</a> | <a href="http://agario2017.gq/" class="text-muted" target="_blank">OgarServ2017</a> | <a href="https://www.youtube.com/channel/UCBd0KM0TyLPiminXiLzFrBQ/discussion" class="text-muted" target="_blank">Contact Us(YT)</a>
             </div>
 
             <!-- // Gameplay Window // -->
@@ -274,7 +270,7 @@ alert("Maintenance...");  //文字列の表示
             <!-- // Gameplay Window END // -->
 <div id="news" class="form-group" style="position:absolute; top:50%;left:-180px;width:350px;">
                 <div class="form-group">
-                    <div class="form-group" style="text-align: center;"><!--- <h6 id="title" color="#ffffff">Chat Test Edition(・8・)</h6> ---><font color="#ffffff">Chat Test Edition(・8・)</font><br><hr>   <a href="http://99.k.vu/Start-DASH/" class="btn btn-success" target="_blank" role="button" style="width: 50%;">OPEN WINDOW</a> 
+                    <div class="form-group" style="text-align: center;"><h6 id="title" color="white">Chat Test Edition(・8・)</h6>   <a href="http://99.k.vu/Start-DASH/" class="btn btn-success" target="_blank" role="button" style="width: 50%;">OPEN WINDOW</a> 
                     </div>
                     <div class="form-group">
           <iframe width="320" height="375" src="http://99.k.vu/Start-DASH/load/" frameborder="0"  allowfullscreen></iframe>
@@ -352,13 +348,13 @@ if(isset($_POST["botan"]))
 <br>
 <p>
 
-<form id="sparkstar" method="post" target="sendMessage">
+<!--- <form id="sparkstar" method="post" target="sendMessage">
   <input type="hidden" name="namae" id="nick" class="form-control save" value="0"  data-box-id="0" placeholder="Nick" maxlength="50" />
   <input type="hidden" name="data" id="aniki" class="form-control save" value="0"  data-box-id="11" placeholder="LEVEL" maxlength="3" />
 <input id="submit-lvl" type="submit" name="botan" value="Entry Level Log" class="btn btn-large btn-success" style="background: url(http://fstyle.gger.jp/earth.png) repeat no-repeat rgb(254, 254, 254) !important;box-shadow: -1px 1px 2px 4px rgba(129, 163, 176, 0.56);border: 1px solid #ffffff;">
-</form>
+</form> --->
 </p>
-<!--- <iframe name="sendMessage" style="width:0px;height:0px;border:0px;"></iframe>
+<iframe name="sendMessage" style="width:0px;height:0px;border:0px;"></iframe>
 <script>
     var $form = $('#sparkstar'),
         $trigger = $('#sendMessageTrigger'),
@@ -378,9 +374,9 @@ if(isset($_POST["botan"]))
     location.href = "#";
         });
     });
-</script> --->
+</script>
 
-<p><!--- <script src="https://apis.google.com/js/platform.js"></script> ---></p>
+<p><script src="https://apis.google.com/js/platform.js"></script></p>
 
 <br><br><br><b></b><br>
 
@@ -395,10 +391,7 @@ if(isset($_POST["botan"]))
 <p><h2>Thanks for playing!</h2></p>
 <img src="./amadeus.png" alt="Delta Force" border="0" /><br>
 <!--タグはここから--><!--- <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center"><img src="http://www.rays-counter.com/d369_f6_002/588cdc3fb184e/" alt="" border="0"></td></tr></table> ---><!--ここまで-->
-<!--NOW--><!--- <a href="http://www.usernow.com/utop-3gpqdj">
-<img src="http://www.usernow.com/services/usersonline/counter.php?aut=3gpqdj&cl=d5164e06ffbf248852d1aecb0175092477632c1283" title="リアルタイムカウンター by User Now" border="0" /></a> --->
-<!--NOW-END-->
-<p><!--- <script src="https://apis.google.com/js/platform.js"></script> ---></p>
+<p><script src="https://apis.google.com/js/platform.js"></script></p>
 
 <div class="g-ytsubscribe" data-channelid="UCBd0KM0TyLPiminXiLzFrBQ" data-layout="default" data-count="default"></div>
 <br><br><br><b></b><br>
@@ -422,8 +415,7 @@ post your skin url.  it may be adopted.<br><a href="https://goo.gl/iN9Cc2">https
 <!---  <script>
 location.hash = 'info-modal';
 </script> --->
-    <script src="assets/js/vector.js"></script>
- <script src="assets/js/main_out_v3.1.js" async></script>
- <script src="assets/js/log.js"></script>
+
 </body>
 </html>
+
