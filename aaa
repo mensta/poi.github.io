@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<!--- これ編集すっときは文字コードのとこちょちょっといじって　これ自分へのメモねｗ --->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Eat cells smaller than you and don't get eaten by the bigger ones, as an MMO">
+    <meta name="keywords" content="FreestyleAgar, Fstyle.ga, http://fstyle.ga/, FstyleAgar, fstyleagar, agario, agar, io, cell, cells, virus, bacteria, blob, game, games, web game, html5, fun, flash">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>FreestyleAgar</title>
+
+    <link id="favicon" rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/index2.css" rel="stylesheet">
+    <link href='assets/css/test.css' rel='stylesheet' type='text/css'>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+ <!---      <script src="http://agar.io/environment.js"></script>
+      <script src="http://agar.io/js/master.js"></script> --->
+<!--- <script src="./i18nXIN-S.js?v=786"></script> --->
+
+    <!-- Load local jQuery -->
+    <script src="./libs/jquery-loader.js"></script>
+
+    <!-- Load local lib and tests -->
+    <link rel="stylesheet" href="./src/remodal.css">
+    <link rel="stylesheet" href="./src/remodal-default-theme.css">
+    <script src="./src/remodal.js"></script>
+    <script src="remodal_test.js"></script>
+    <style>
+      .remodal-overlay.without-animation.remodal-is-opening,
+      .remodal-overlay.without-animation.remodal-is-closing,
+      .remodal.without-animation.remodal-is-opening,
+      .remodal.without-animation.remodal-is-closing,
+      .remodal-bg.without-animation.remodal-is-opening,
+      .remodal-bg.without-animation.remodal-is-closing {
+        animation: none;
+      }
+    </style>
+
+<script>
+
+window.addEventListener('keydown', keydown);
+window.addEventListener('keyup', keyup);
+
+//Auto-enable show mass/skip stats
+//IMPORTANT: You must uncheck showmass/skip stats first then recheck them for it to auto save every time
+function autoSet() {
+    var m = document.getElementById('showMass'), s = document.getElementById('skipStats');
+    if (document.getElementById("overlays").style.display!= "none") {
+        document.getElementById("settings").style.display = "block";
+        if (m.checked) {m.click();} m.click(); //Show mass
+        if (s.checked) {s.click();} s.click(); //Skip stats
+    } else setTimeout(autoSet, 100);
+}
+
+//Load macros
+var canFeed = false;
+function keydown(event) {
+    switch (event.keyCode) {
+        case 87: //Feeding Macro (w)
+            canFeed = true;
+            feed();
+            break;
+        case 16: //Tricksplit Macro (shift)
+            var e = 35;
+            for (var e2 = 0; e2 < 4; e2++) {
+                setTimeout(split, e);
+                e *= 2;
+            }
+            break;
+        case 52: //Tricksplit Macro (4)
+            var four = 35;
+            for (var four2 = 0; four2 < 4; four2++) {
+                setTimeout(split, four);
+                four *= 2;
+            }
+            break;
+        case 65: //Triplesplit Macro (a)
+            var a = 35;
+            for (var a2 = 0; a2 < 3; a2++) {
+                setTimeout(split, a);
+                a *= 2;
+            }
+            break;
+        case 51: //Triplesplit Macro (3)
+            var three = 35;
+            for (var three2 = 0; three2 < 3; three2++) {
+                setTimeout(split, three);
+                three *= 2;
+            }
+            break;
+        case 68: //Doublesplit Macro (d)
+            split();
+            setTimeout(split, 50);
+            break;
+        case 50: //Doublesplit Macro (2)
+            split();
+            setTimeout(split, 50);
+            break;
+        case 83: //Space Macro (s)
+            split();
+            break;
+        case 49: //Space Macro (1)
+            split();
+            break;
+        case 72: //Horizontal linesplit (h)
+            X = window.innerWidth / 2;
+            Y = window.innerHeight / 2;
+            $("canvas").trigger($.Event("mousemove", {clientX: X, clientY: Y}));
+            break;
+        case 86: //Vertical linesplit (v)
+            X = window.innerWidth / 2;
+            Y = window.innerHeight / 2.006;
+            $("canvas").trigger($.Event("mousemove", {clientX: X, clientY: Y}));
+            break;
+    }
+}
+
+//When a player lets go of W stop feeding
+function keyup(event) {
+    if (event.keyCode == 87)
+        canFeed = false;
+}
+
+//Alias for W key
+function feed() {
+    if (canFeed) {
+        window.onkeydown({keyCode: 87});
+        window.onkeyup({keyCode: 87});
+        setTimeout(feed, 0);
+    }
+}
+
+//Alias for space
+function split() {
+    $("body").trigger($.Event("keydown", { keyCode: 32}));
+    $("body").trigger($.Event("keyup", { keyCode: 32}));
+}
+</script>
+
+	<script type="text/javascript">
+    $(window).load(function(){
+        $('#comingsoon').modal('show');
+    });
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8&appId=218244778582188";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</head>
+
+<body>
+    <div id="overlays">
+        <div id="helloDialog" style="background: url(./FstyleAgar-BG.png) repeat no-repeat rgb(254, 254, 254) !important;box-shadow: -1px 1px 2px 4px rgba(129, 163, 176, 0.56);border: 1px solid #ffffff;">
+            <form role="form">
+                <div class="form-group">
+                    <h2 id="title">FreestyleAgar ✅ </h2>
+<script src="https://apis.google.com/js/platform.js"></script>
+
+                </div>
+
+                <div class="form-group">
+                   <input id="nick" class="form-control save" value="<skinName>"  data-box-id="0" placeholder="Nick" maxlength="50" />
+
+                    <select id="gamemode" class="form-control" onchange="setserver($(this).val());" required>
+                       <!---  <option selected disabled>Gamemode:</option> --->
+
+                        <option value="ps.fstyle.ns01.us:9123">Main9123</option>
+                        <option value="mivabe-bakamonocx52752.codeanyapp.com:9456">TestServ2</option>
+                        <option value="ps.fstyle.ns01.us:9456">Minions 24/7</option>
+                        <option value="150.95.135.169:8001">Feed=Virus</option>
+                        <option value="m16ogar.al.gl:2052">FFA M16(Korea)</option>
+                       <!---  <option value="45.55.155.2:444">Instant Mod</option> --->
+                        <option value="128.199.76.99:4000">Instant Mod</option>
+                    </select>
+                    <br clear="both" />
+                </div>
+
+                <div class="form-group">
+
+                    <div class="mb-10">
+            
+                    </div>
+
+                    <button type="submit" id="play-btn" onclick="setNick(document.getElementById('nick').value); return false;" class="btn btn-play btn-primary btn-needs-server">Play</button>
+                    <button onclick="$('#settings, #instructions').toggle(); return false;" class="btn btn-info btn-settings" id="settings-btn"><i class="glyphicon glyphicon-cog"></i></button>
+                    <br clear="both" />
+                </div>
+
+                <div id="settings" class="checkbox" style="display:none;">
+                    <div class="form-group" id="mainform">
+                        <button id="spectate-btn" onclick="spectate(); return false;" style="width: 100%" class="btn btn-warning btn-spectate btn-needs-server">Spectate
+                        </button>
+                        <br clear="both" />
+                    </div>
+   <a href="http://99.k.vu/skins/" class="btn-primary btn btn-info" target="_blank" role="button" style="width: 50%;">Skins Gallery</a>                  
+
+
+<a onclick="document.getElementById('nick').value='<skinName>';document.getElementById('nick').focus()"   class="btn-danger btn btn info" role="button">Name Of Skin</a><br>
+                    <div style="margin: 6px;">
+
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="1" onchange="setSkins(!$(this).is(':checked'));"> No skins</label>
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="2" onchange="setNames(!$(this).is(':checked'));"> No names</label>
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="3" onchange="setDarkTheme($(this).is(':checked'));"> Dark Theme</label>
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="4" onchange="setColors($(this).is(':checked'));"> No colors</label>
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="5" onchange="setShowMass($(this).is(':checked'));"> Show mass</label>
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="6" onchange="setSmooth($(this).is(':checked'));"> Smooth Render</label>
+                        <label>
+                            <input type="checkbox" class="save" data-box-id="7" onchange="setChatHide($(this).is(':checked'));"> Hide Chat</label><br><br>   
+<div class="g-ytsubscribe" data-channelid="UCBd0KM0TyLPiminXiLzFrBQ" data-layout="default" data-count="default"></div>
+<div class="fb-share-button" data-href="http://99.k.vu/" data-layout="button" data-size="small" data-mobile-iframe="true">
+<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F99.k.vu%2F&amp;src=sdkpreparse">SHARE</a></div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://99.k.vu/" data-text="AGARIO PRO SERVER!!" data-hashtags="agario">Tweet</a> 
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                    </div>
+                </div>
+            </form>
+
+            <div id="instructions">
+                <hr/>
+                <center>
+                    <span class="text-muted">
+                        Move your mouse to control your cell<br/>
+                        Press <b>Space</b> to split<br/>
+                        Press <b>W</b> to eject some mass<br/>
+                        Press <b>Shift</b> = macro split<br/>
+                        Press <b>D</b> = Double Split<br/>
+                        Press <b>E</b> to split your bots<br/>
+                        Press <b>R</b> to eject your bots<br/>
+                    </span><br>
+<!--- <script>
+
+alert("Maintenance...");  //文字列の表示
+</script> --->
+<!--- <iframe width="140" height="78" src="https://www.youtube.com/embed/6ZEP7UBgw6w" frameborder="0" allowfullscreen></iframe> --->
+<div class="g-ytsubscribe" data-channelid="UCBd0KM0TyLPiminXiLzFrBQ" data-layout="full" data-count="default"></div>
+
+                </center>
+            </div>
+
+            <hr />
+            <div id="footer">
+                <a href="http://99.k.vu/" class="text-muted" target="_blank">Info: 99.k.vu</a> | <a href="https://www.youtube.com/channel/UCBd0KM0TyLPiminXiLzFrBQ/discussion#FstyleAgarSkinRequests-PasteYourSkinURL&skinName/" class="text-muted" target="_blank">Skin Requests</a> | <a href="https://www.youtube.com/channel/UCBd0KM0TyLPiminXiLzFrBQ/discussion" class="text-muted" target="_blank">Contact Us(YT)</a>
+            </div>
+
+            <!-- // Gameplay Window // -->
+            <div id="about" class="form-group" style="position:absolute; top: 50%;left:578px;width:350px;">
+                <div class="form-group">
+                    <div class="form-group" style="text-align: center;"><h3 id="title"><font color="yellow">hello :)</font></h3></div>
+                    <div class="form-group">
+           <iframe width="320" height="355" src="http://test.agario2017.gq/highscores-load.php" frameborder="0"  allowfullscreen></iframe>  </div>
+                </div>
+                <br clear="all">
+            </div>
+            <!-- // Gameplay Window END // -->
+<div id="news" class="form-group" style="position:absolute; top:50%;left:-180px;width:350px;">
+                <div class="form-group">
+                    <div class="form-group" style="text-align: center;"><!--- <h6 id="title" color="#ffffff">Chat Test Edition(・8・)</h6> ---><font color="#ffffff">Chat Test Edition(・8・)</font><br><hr>   <a href="http://99.k.vu/Start-DASH/" class="btn btn-success" target="_blank" role="button" style="width: 50%;">OPEN WINDOW</a> 
+                    </div>
+                    <div class="form-group">
+          <iframe width="320" height="375" src="http://99.k.vu/Start-DASH/load/" frameborder="0"  allowfullscreen></iframe>
+                    </div>
+                    <br>
+
+                </div>
+            </div>
+            <!-- // News Window END // -->
+
+        </div>
+    </div>
+
+    <div id="connecting">
+        <div style="width: 350px; background-color: #FFFFFF; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;">
+            <h2>Connecting</h2>
+            <p> If you cannot connect to the servers, check if you have some anti virus or firewall blocking the connection. Contact Us: <a href="http://99.k.vu/" class="text-muted">99.k.vu</a></p>
+        </div>
+    </div>
+
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <input type="text" id="chat_textbox" placeholder="Press enter to chat!" maxlength="200" />
+			<!--- <div id="level">
+			    <label>LEVEL <b id="lvl"><div class="twirl"></div>0</b></label>
+			    <div class="progress">
+			      <div id="levelBar" class="progress-bar progress-bar-warning" style="width: 10%;">
+			      	<div id="liquid"></div>
+			      </div>
+			    </div>
+<a href="#entry-lvl" class="btn btn-large btn-success">Entry LVL</a> --->
+
+<iframe width="560" height="145" src="./level5.php" frameborder="0"  allowfullscreen></iframe>
+
+			</div>
+<?php
+if(isset($_POST["botan"]))
+{
+   $moji='"LVL:  ';
+   $moji.=htmlspecialchars($_POST["data"],ENT_NOQUOTES);
+   $moji.='"';
+
+   $moji.=",";
+
+   $moji.='"Nick: ';
+   $moji.=htmlspecialchars($_POST["namae"],ENT_NOQUOTES);
+   $moji.='"';
+
+//   $moji.=",";
+
+
+//   $moji.='"';
+//    $moji.=date("Y/m/d G:H:s");
+//   $moji.='"';
+
+   $moji.="\r\n";
+
+   $file=@fopen("log.txt","a");
+   if(!$file)
+   {
+   }
+   else
+   {
+      fputs($file,$moji);
+      fclose($file);
+   }
+
+   $_POST["botan"]=NULL;
+}
+?>
+
+
+ <div class="remodal" data-remodal-id="entry-lvl">
+<p><h2>LEVEL <b id="aniki2">0</b></h2></p> --->
+
+<br>
+<p>
+
+<form id="sparkstar" method="post" target="sendMessage">
+  <input type="hidden" name="namae" id="nick" class="form-control save" value="0"  data-box-id="0" placeholder="Nick" maxlength="50" />
+  <input type="hidden" name="data" id="aniki" class="form-control save" value="0"  data-box-id="11" placeholder="LEVEL" maxlength="3" />
+<input id="submit-lvl" type="submit" name="botan" value="Entry Level Log" class="btn btn-large btn-success" style="background: url(http://fstyle.gger.jp/earth.png) repeat no-repeat rgb(254, 254, 254) !important;box-shadow: -1px 1px 2px 4px rgba(129, 163, 176, 0.56);border: 1px solid #ffffff;">
+</form>
+</p>
+<!--- <iframe name="sendMessage" style="width:0px;height:0px;border:0px;"></iframe>
+<script>
+    var $form = $('#sparkstar'),
+        $trigger = $('#sendMessageTrigger'),
+        $iframe = $('iframe[name="sendMessage"]');
+ 
+    $trigger.click(function() {
+        $form.submit();
+ 
+        $form[0].reset();   // フォームをリセット
+ 
+        return false;
+    });
+ 
+    $form.submit(function() {
+        $iframe.unbind().bind('load', function() {
+            // 結果が見たい場合はココで処理
+    location.href = "#";
+        });
+    });
+</script> --->
+
+<p><!--- <script src="https://apis.google.com/js/platform.js"></script> ---></p>
+
+<br><br><br><b></b><br>
+
+
+  <a data-remodal-action="confirm" class="remodal-confirm" href="#">OK</a>
+</div>
+
+
+    <div style="font-family:'Ubuntu'">&nbsp;</div>
+
+<div class="remodal" data-remodal-id="modal">
+<p><h2>Thanks for playing!</h2></p>
+<img src="./amadeus.png" alt="Delta Force" border="0" /><br>
+<!--タグはここから--><!--- <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center"><img src="http://www.rays-counter.com/d369_f6_002/588cdc3fb184e/" alt="" border="0"></td></tr></table> ---><!--ここまで-->
+<!--NOW--><!--- <a href="http://www.usernow.com/utop-3gpqdj">
+<img src="http://www.usernow.com/services/usersonline/counter.php?aut=3gpqdj&cl=d5164e06ffbf248852d1aecb0175092477632c1283" title="リアルタイムカウンター by User Now" border="0" /></a> --->
+<!--NOW-END-->
+<p><!--- <script src="https://apis.google.com/js/platform.js"></script> ---></p>
+
+<div class="g-ytsubscribe" data-channelid="UCBd0KM0TyLPiminXiLzFrBQ" data-layout="default" data-count="default"></div>
+<br><br><br><b></b><br>
+
+
+  <a data-remodal-action="confirm" class="remodal-confirm" href="#">OK</a>
+</div>
+
+
+
+<!--- oshirase --->
+<div class="remodal" data-remodal-id="info-modal">
+<p><h2>FstyleAgar Skin Requests</h2></p>
+<br>
+</p>
+post your skin url.  it may be adopted.<br><a href="https://goo.gl/iN9Cc2">https://goo.gl/iN9Cc2</a><br>hash tag: #lightmyaniki<br><br><b></b><br>
+
+
+  <a data-remodal-action="confirm" class="remodal-confirm" href="#">OK</a>
+</div>
+<!---  <script>
+location.hash = 'info-modal';
+</script> --->
+    <script src="assets/js/vector.js"></script>
+ <script src="assets/js/main_out_v3.1.js" async></script>
+ <script src="assets/js/log.js"></script>
+</body>
+</html>
